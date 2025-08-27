@@ -10,8 +10,8 @@ import { LocalStorageService } from '../../Services/LocalStorage.service';
 export class Footer implements OnInit {
   currentYear = new Date().getFullYear();
   logoFooter: string | null = null;
- 
-  constructor(private localStorageService: LocalStorageService){}
+
+  constructor(private localStorageService: LocalStorageService) { }
 
   ngOnInit(): void {
     this.logoFooter = this.localStorageService.getItem('LogoFooter');
