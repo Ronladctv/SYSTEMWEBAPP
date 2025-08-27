@@ -8,6 +8,7 @@ import { materialProviders } from '../../shared-ui';
 import { MenuService } from '../../Services/menu.service';
 import { Menu } from '../../Interfaces/menu';
 import { LocalStorageService } from '../../Services/LocalStorage.service';
+import { NotifierService } from '../../notifier.service';
 
 
 @Component({
@@ -27,6 +28,7 @@ export class MainLayout {
   public menus = signal<Menu[]>([]);
 
   constructor(private observer: BreakpointObserver,
+    private notifierService: NotifierService,
     private localStorageService: LocalStorageService) {
 
   }
@@ -51,6 +53,11 @@ export class MainLayout {
     //document.documentElement.style.setProperty('--color-primary', colorPrimary);
     //document.documentElement.style.setProperty('--color-secondary', colorSecondary);
 
+    if (!usuarioId || !empresaId) {
+      this.notifierService.showNotification("No se pudo cargar el menú: faltan datos de usuario o empresa.", 'Error', 'warning');
+      this.menus.set([]);
+      return;
+    }
 
     this.Menu.GetMneu(usuarioId, empresaId).subscribe({
       next: (data) => {
