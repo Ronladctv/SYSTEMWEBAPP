@@ -15,7 +15,7 @@ import { NotifierService } from '../../notifier.service';
   selector: 'app-main-layout',
   imports: [RouterOutlet, Header, Footer, materialProviders, RouterLink],
   templateUrl: './main-layout.html',
-  styleUrl: './main-layout.css'
+  styleUrls: ['./main-layout.css']
 })
 export class MainLayout {
   protected title = 'WEBAPP';
